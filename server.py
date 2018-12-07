@@ -1,7 +1,5 @@
 # importing the socket library 
 import socket
-# importing the requests from urllib  
-import requests 
   
 def main():
 	LISTEN_PORT = 80
