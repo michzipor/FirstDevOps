@@ -1,7 +1,9 @@
+# importing the socket library 
 import socket
-
+# importing the requests from urllib  
+import requests 
+  
 def main():
-
 	LISTEN_PORT = 80
 
 	# Create a TCP/IP socket
@@ -20,9 +22,13 @@ def main():
 	# Receiving data from the client
 	client_msg = client_soc.recv(1024)
 	client_msg = client_msg.decode()
-	print(client_msg)
+	# get first argument (name) from url string
+	client_msg = client_msg.split("?")[1]
+	# get name value from first url argument
+	my_name = client_msg.split("=")[1]
+	
 	# Sending data back
-	msg = "Hello, " + client_msg + "!"
+	msg = "Hello, " + my_name + "!"
 	client_soc.sendall(msg.encode())
 
 	# Closing the conversation socket
@@ -30,7 +36,6 @@ def main():
 
 	# Closing the listening socket
 	listening_sock.close()
-
 
 if __name__ == "__main__":
     main()
